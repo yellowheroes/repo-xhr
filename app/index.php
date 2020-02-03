@@ -5,9 +5,9 @@ include('./helpers.php');
 $heading = heading('Upload File');
 $fileUploadForm = <<<HEREDOC
 $heading
-<form method="post" enctype="multipart/form-data" action="./upload.php">
-<input type="file" name="userUpload" value="">
-<input type="submit" name="submit" value="upload file">
+<form id='uploadForm' method="post" enctype="multipart/form-data">
+<input type="file" id='userUploads' name="userUploads[]" multiple>
+<input type="submit" id="submit" name="submit" value="upload file">
 </form>\r\n\r\n
 HEREDOC;
 echo $fileUploadForm;
@@ -33,3 +33,46 @@ foreach ($files as $file) {
 echo '</table>';
 
 include('./footer.php');
+?>
+
+<!-- handle file upload with js xhr -->
+<script>
+    // reference the form, the file <input> and submit <input>
+    let form = document.getElementById('uploadForm');
+    let userUploads = document.getElementById('userUploads');
+    let submit = document.getElementById('submit');
+
+    form.onsubmit = function(event) {
+        event.preventDefault();
+        let files = userUploads.files; // retrieve FileList from <input type = 'file'...> element - access the files property
+        let formData = new FormData();
+
+        /* cycle through the files array */
+        for(let i = 0; i < files.length; i++) {
+            let file = files[i];
+
+            // Check the file type - turned-off
+            //if (!file.type.match('image.*')) {
+            //    continue;
+            //}
+            formData.append('userUploads[]', file, file.name);
+        }
+
+        /* set up xhr */
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'upload.php', true);
+        xhr.onload = function() {
+            if(xhr.status === 200) {
+                //successful upload
+                alert('successful upload');
+            } else {
+                alert('an error occured');
+            }
+        };
+
+        xhr.send(formData); // send the data to upload.php
+
+
+    }; // LET OP, check ; or not... ?
+</script>
+
