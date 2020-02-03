@@ -64,7 +64,8 @@ include('./footer.php');
         xhr.onload = function() {
             if(xhr.status === 200) {
                 //successful upload
-                //alert('successful upload');
+                alert('successful upload');
+                location.reload(); // refresh page to show updated list
             } else {
                 alert('an error occured');
             }
