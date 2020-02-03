@@ -1,7 +1,8 @@
 # Repo-xhr
 A small application that offers file upload and downloading/viewing right from your browser.
-Want to select multiple files for upload, hold down CTRL while selecting files.
-Uploads are executed using a chunking technique, we still need to run tests to find an optimal chunk size.
+If you want to select multiple files for upload, hold down CTRL while selecting files.
+We have implemented the js FormData object to send files to the server using XMLHttpRequest.
+Once on the server, the uploads are written to their final destination using a chunking technique, we still need to run tests to find an optimal chunk size.
 The application is password protected using .htpasswd (Apache) and .htaccess.
 
 #### Usage
