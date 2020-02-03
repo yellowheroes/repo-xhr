@@ -11,14 +11,6 @@
  * etc.
  * Same for all other $_FILES elements you'd like access to.
  */
-
-foreach($_FILES['userUploads']['name'] as $key => $value) {
-    echo 'key : ' . $key;
-    echo '<br />';
-    echo 'value : ' . $value;
-    echo '<br />';
-}
-
 if(true) {
     $path = __DIR__ . '/repo/uploads'; // path to the uploads folder
     // create uploads directory if does not exist
