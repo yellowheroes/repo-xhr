@@ -64,7 +64,7 @@ include('./footer.php');
         xhr.onload = function() {
             if(xhr.status === 200) {
                 //successful upload
-                alert('successful upload');
+                //alert('successful upload');
             } else {
                 alert('an error occured');
             }
@@ -73,6 +73,6 @@ include('./footer.php');
         xhr.send(formData); // send the data to upload.php
 
 
-    }; // LET OP, check ; or not... ?
+    };
 </script>
 
